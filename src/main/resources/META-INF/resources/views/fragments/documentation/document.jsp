@@ -6,28 +6,39 @@
         <div class="hover:bg-active/10 group relative flex flex-col gap-y-2 rounded-2xl bg-white/80 p-4 drop-shadow-[0_0px_15px_rgba(0,0,0,0.04)] transition duration-200">
             <!-- Name -->
             <p class="text-md font-bold text-gray-700 line-clamp-2">${item.name}</p>
+            <a href="/document/document-detail/${item.id}"
+               class="flex flex-shrink-0 items-center gap-x-2 justify-center py-2 px-3 rounded-xl drop-shadow-xs ring-1 ring-gray-200/80">
+                <p class="text-xs font-semibold">Đọc bài</p>
+                <img src="../../static/icons/person.svg" class="w-4 h-4" alt="">
+            </a>
             <!-- Description -->
             <p class="text-md font-medium text-gray-700 line-clamp-5 px-2">${item.description}</p>
+            <div class="flex items-center gap-2 border-t border-gray-200 pt-2">
+                <span class="text-sm font-semibold">Type:</span>
+<%--                <div class="flex cursor-pointer items-center bg-sky-500/40 py-1 px-2 rounded-2xl drop-shadow-xs">--%>
+<%--                    <p class="text-xs font-semibold truncate">${item.fileType}</p>--%>
+<%--                </div>--%>
+                <span class="text-xs font-semibold bg-sky-500/40 rounded-2xl drop-shadow-xs py-1 px-2 truncate">${item.fileType}</span>
+            </div>
             <!-- Edit/Delete -->
             <div class="flex gap-x-2">
-                <span class="flex flex-shrink-0 cursor-pointer items-center bg-sky-500/40 py-1 px-2 rounded-2xl drop-shadow-xs">
-                    <p class="text-xs font-semibold">${item.fileType}</p>
-                </span>
-                <a href="#" class="flex flex-shrink-0 items-center bg-red-500/40 hover:bg-red-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
+                <a href="#"
+                   class="flex flex-shrink-0 items-center bg-red-500/40 hover:bg-red-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
                     <p class="text-xs font-semibold">Chỉnh sửa</p>
                 </a>
-                <a href="/delete/${item.id}" class="flex flex-shrink-0 items-center bg-green-500/40 hover:bg-green-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
+                <a href="/delete/${item.id}"
+                   class="flex flex-shrink-0 items-center bg-green-500/40 hover:bg-green-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
                     <p class="text-xs font-semibold">Xoá</p>
                 </a>
             </div>
             <!-- File -->
             <div class="relative">
-                <a href="#" download=""
+                <a href="#" download="${item.fileData}"
                    class="absolute right-0 top-0 bg-white rounded-full w-6 h-6 flex items-center justify-center drop-shadow-lg hover:bg-zinc-100">
                     <img src="../../static/icons/download.svg" class="w-3 h-3" alt="">
                 </a>
                 <div class="mt-2 cursor-pointer flex justify-start rounded-lg border border-dashed border-gray-900/25 px-2 py-3 line-clamp-2">
-                        ${item.file}
+                        ${item.fileName}
                 </div>
             </div>
             <!-- User -->

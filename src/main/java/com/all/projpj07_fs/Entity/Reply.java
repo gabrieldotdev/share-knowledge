@@ -3,32 +3,16 @@ package com.all.projpj07_fs.Entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
 
 @Entity
-@Table(name = "documents")
-public class Document {
+@Table(name = "replies")
+public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
-    @Column(name = "name", nullable = false, length = 200)
-    private String Name;
-
-    @Column(name = "description", nullable = false, length = 255)
-    private String Description;
-
-    @Column(name = "fileName", nullable = false)
-    private String FileName;
-
-    @Column(name = "fileType", nullable = false)
-    private String FileType;
-
-    @Column(name = "countDownload", nullable = false, columnDefinition = "INT DEFAULT 0")
-    private Integer CountDownload;
-
-    @Column(name = "fileData", nullable = false, columnDefinition = "bytea")
-    private byte[] FileData;
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
+    private String Content;
 
     @Column(name = "publishedOn", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp PublishedOn;
@@ -39,16 +23,22 @@ public class Document {
     @Column(name = "userId", nullable = false)
     private Integer UserId;
 
+    @Column(name = "commentId", nullable = false)
+    private Integer CommentId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "commentId", referencedColumnName = "id", insertable = false, updatable = false)
+    private Comment comment;
 
     // PrePersist and PreUpdate
     @PrePersist
     protected void onCreate() {
         PublishedOn = new Timestamp(System.currentTimeMillis());
         UpdatedOn = new Timestamp(System.currentTimeMillis());
-        CountDownload = 0;
     }
 
     @PreUpdate
@@ -56,7 +46,8 @@ public class Document {
         UpdatedOn = new Timestamp(System.currentTimeMillis());
     }
 
-//     Getter and Setter
+    // Getters and setters
+
     public Integer getId() {
         return Id;
     }
@@ -65,52 +56,12 @@ public class Document {
         Id = id;
     }
 
-    public String getName() {
-        return Name;
+    public String getContent() {
+        return Content;
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    public String getFileName() {
-        return FileName;
-    }
-
-    public void setFileName(String fileName) {
-        FileName = fileName;
-    }
-
-    public String getFileType() {
-        return FileType;
-    }
-
-    public void setFileType(String fileType) {
-        FileType = fileType;
-    }
-
-    public Integer getCountDownload() {
-        return CountDownload;
-    }
-
-    public void setCountDownload(Integer countDownload) {
-        CountDownload = countDownload;
-    }
-
-    public byte[] getFileData() {
-        return FileData;
-    }
-
-    public void setFileData(byte[] fileData) {
-        FileData = fileData;
+    public void setContent(String content) {
+        Content = content;
     }
 
     public Timestamp getPublishedOn() {
@@ -137,6 +88,14 @@ public class Document {
         UserId = userId;
     }
 
+    public Integer getCommentId() {
+        return CommentId;
+    }
+
+    public void setCommentId(Integer commentId) {
+        CommentId = commentId;
+    }
+
     public User getUser() {
         return user;
     }
@@ -145,20 +104,25 @@ public class Document {
         this.user = user;
     }
 
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
-        return "Document{" +
+        return "Reply{" +
                 "Id=" + Id +
-                ", Name='" + Name + '\'' +
-                ", Description='" + Description + '\'' +
-                ", FileName='" + FileName + '\'' +
-                ", FileType='" + FileType + '\'' +
-                ", CountDownload=" + CountDownload +
-                ", FileData=" + Arrays.toString(FileData) +
+                ", Content='" + Content + '\'' +
                 ", PublishedOn=" + PublishedOn +
                 ", UpdatedOn=" + UpdatedOn +
                 ", UserId=" + UserId +
+                ", CommentId=" + CommentId +
                 ", user=" + user +
+                ", comment=" + comment +
                 '}';
     }
 }

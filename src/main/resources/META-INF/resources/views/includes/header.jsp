@@ -26,9 +26,6 @@
             <ul class="flex items-center space-x-4">
                 <li class="flex items-center gap-x-2">
                     <div class="relative">
-                        <span id="clear-content" class="text-xs font-medium">
-                            Clear
-                        </span>
                         <form class="w-64 hidden xl:block">
                             <label for="search"></label>
                             <input id="search" name="keyword" value="${param.keyword}" type="text"
@@ -40,7 +37,8 @@
                         <div id="searchResults"
                              class="absolute z-20 top-full left-0 mt-2 bg-white border rounded-xl shadow-lg p-4 hidden">
                             <div class="flex flex-col items-start justify-center gap-x-2">
-                                <span class="text-gray-400">Kết quả:<c:if test="${not empty param.keyword}"> ${param.keyword}</c:if></span>
+                                <span class="text-gray-400">Kết quả:<c:if
+                                        test="${not empty param.keyword}"> ${param.keyword}</c:if></span>
                                 <c:if test="${not empty param.keyword}">
                                     <c:forEach var="item" items="${searchDocument}">
                                         <a href="#"
