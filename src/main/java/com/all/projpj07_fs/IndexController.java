@@ -1,7 +1,9 @@
 package com.all.projpj07_fs;
 
+import com.all.projpj07_fs.Entity.User;
 import com.all.projpj07_fs.Entity.Document;
 import com.all.projpj07_fs.Services.DocumentService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,11 @@ public class IndexController {
     private DocumentService servs;
 
     @GetMapping("/")
-    public String showHomePage(Model model, @Param("keyword") String keyword) {
+    public String showHomePage(Model model, @Param("keyword") String keyword, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        System.out.println(user == null ? "null" : user);
         List<Document> searchDocument = servs.search(keyword);
+//        model.addAttribute("user", user);
         model.addAttribute("searchDocument", searchDocument);
         model.addAttribute("documents", servs.listAll());
         model.addAttribute("title", "The Knowledge Bank | Trang web chia sẻ tài liệu");

@@ -22,7 +22,7 @@ public class User {
     private String Email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "roleId", referencedColumnName = "id", insertable = false, updatable = false, columnDefinition = "INT DEFAULT 2")
+    @JoinColumn(name = "roleId", referencedColumnName = "id", insertable = false, updatable = false)
     private Role role;
     @Column(name = "dateJoin", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp DateJoin;
