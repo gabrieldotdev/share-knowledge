@@ -38,4 +38,9 @@ public class UserService {
         repo.deleteById(id);
     }
 
+    public User findByEmail(String email) {
+        Optional<User> result = repo.findByEmail(email);
+        return result.orElse(null);
+    }
+
 }

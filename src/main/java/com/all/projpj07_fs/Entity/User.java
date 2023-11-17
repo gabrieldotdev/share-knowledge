@@ -110,4 +110,8 @@ public class User {
                 ", DateJoin=" + DateJoin +
                 '}';
     }
+
+    public User orElse(Object o) {
+        return null;
+    }
 }

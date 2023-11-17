@@ -1,7 +1,9 @@
 package com.all.projpj07_fs.Controller;
 
 import com.all.projpj07_fs.Entity.Document;
+import com.all.projpj07_fs.Entity.User;
 import com.all.projpj07_fs.Services.DocumentService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +24,16 @@ public class UploadController {
     private DocumentService servs;
 
     @RequestMapping(value = {"/uploadFile/new", "tai-len"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public String showUploadFile(Model model) {
+    public String showUploadFile(Model model, HttpSession session) {
         model.addAttribute("documents", new Document());
         model.addAttribute("title", "Upload file");
-        return "pages/upload/uploadFile";
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/auth/login";
+        } else {
+            model.addAttribute("user", user);
+            return "pages/upload/uploadFile";
+        }
     }
 
     @RequestMapping(value = {"/save", "luu"}, method = RequestMethod.POST)
@@ -37,7 +45,7 @@ public class UploadController {
     ) throws IOException {
         String fileType = file.getContentType();
         List<String> acceptType = Arrays.asList("application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-        if(!acceptType.contains(fileType)){
+        if (!acceptType.contains(fileType)) {
             redirectAttributes.addFlashAttribute("message", "Chỉ chấp nhận file pdf, doc, docx");
             return "redirect:/upload/uploadFile/new";
         }

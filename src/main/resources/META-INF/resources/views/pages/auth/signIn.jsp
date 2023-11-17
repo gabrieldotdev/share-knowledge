@@ -9,7 +9,7 @@
 <body>
 <div class="flex items-center min-h-screen p-4 bg-gray-100 justify-center bg-zinc-100">
     <div class="bg-white rounded-2xl shadow-lg p-4 max-w-xl w-full space-y-2">
-        <form>
+        <form action="/auth/login" method="post">
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-lg font-semibold leading-7 text-gray-900">Đăng nhập vào tài khoản của bạn</h2>
