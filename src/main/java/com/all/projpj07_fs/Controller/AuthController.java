@@ -59,4 +59,10 @@ public class AuthController {
         return "redirect:/auth/signin";
     }
 
+    @RequestMapping(value = {"signout", "logout"}, method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:/";
+    }
+
 }

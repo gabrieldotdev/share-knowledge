@@ -21,7 +21,7 @@ public class User {
     @Column(name = "email", nullable = false, length = 45, unique = true)
     private String Email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId", referencedColumnName = "id", insertable = false, updatable = false, columnDefinition = "INT DEFAULT 2")
     private Role role;
     @Column(name = "dateJoin", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

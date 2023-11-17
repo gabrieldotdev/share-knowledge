@@ -81,17 +81,26 @@
         </nav>
         <%--| USER + NOTIFICATION |--%>
         <div class="flex items-center gap-x-4">
-            <img src="../../static/icons/commercial.svg" alt="" class="w-4 h-4">
+            <c:if test="${not empty user}">
             <a href="/upload/uploadFile/new" title="Upload">
                 <img src="../../static/icons/upload.svg" alt="" class="w-4 h-4">
             </a>
             <div class="flex items-center gap-x-2">
-                <p class="text-zinc-600 font-semibold">管理员</p>
+                <p class="text-zinc-600 font-semibold" >
+                    <c:out value="${user.lastName}"/> <c:out value="${user.firstName}"/>
+                </p>
+
                 <img src="../../static/icons/prev.svg" alt="" class="w-3 h-3">
-                <a href="/auth/signin" title="Sign In">
-                    <img src="../../static/icons/person.svg" alt="" class="w-4 h-4">
-                </a>
             </div>
+                <a href="/auth/signout" title="Sign Out">
+                    <img src="../../static/icons/commercial.svg" alt="" class="w-4 h-4" >
+                </a>
+            </c:if>
+            <c:if test="${empty user}">
+            <a href="/auth/signin" title="Sign In">
+                <img src="../../static/icons/person.svg" alt="" class="w-4 h-4">
+            </a>
+            </c:if>
         </div>
     </div>
 </header>
