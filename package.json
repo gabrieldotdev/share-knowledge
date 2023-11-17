@@ -1,0 +1,17 @@
+{
+  "name": "PROJ-PJ07_FS-TheKnowledgeBanks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i src/main/resources/static/css/tailwind.css -o src/main/resources/static/css/styles.css --minify",
+    "watch:css": "tailwindcss -i src/main/resources/static/css/tailwind.css -o src/main/resources/static/css/styles.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
+  }
+}
