@@ -23,6 +23,7 @@ public class User {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId", referencedColumnName = "id", insertable = false, updatable = false, columnDefinition = "INT DEFAULT 2")
+
     private Role role;
     @Column(name = "dateJoin", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp DateJoin;

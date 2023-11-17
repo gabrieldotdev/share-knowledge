@@ -1,5 +1,6 @@
 package com.all.projpj07_fs;
 
+import com.all.projpj07_fs.Entity.User;
 import com.all.projpj07_fs.Entity.Document;
 import com.all.projpj07_fs.Entity.User;
 import com.all.projpj07_fs.Services.DocumentService;
@@ -21,6 +22,7 @@ public class IndexController {
     @GetMapping("/")
     public String showHomePage(Model model, @Param("keyword") String keyword, HttpSession session) {
         User user = (User) session.getAttribute("user");
+
         List<Document> searchDocument = servs.search(keyword);
         model.addAttribute("user", user);
         model.addAttribute("searchDocument", searchDocument);

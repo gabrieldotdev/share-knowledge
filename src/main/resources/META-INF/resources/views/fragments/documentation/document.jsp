@@ -5,7 +5,7 @@
     <figure v-for="image in images" class="py-2 [break-inside:avoid]">
         <div class="hover:bg-active/10 group relative flex flex-col gap-y-2 rounded-2xl bg-white/80 p-4 drop-shadow-[0_0px_15px_rgba(0,0,0,0.04)] transition duration-200">
             <!-- Name -->
-            <p class="text-md font-bold text-gray-700 line-clamp-2">${item.name}</p>
+            <p class="text-md font-bold text-gray-700 truncate">${item.name}</p>
             <a href="/document/document-detail/${item.id}"
                class="flex flex-shrink-0 items-center gap-x-2 justify-center py-2 px-3 rounded-xl drop-shadow-xs ring-1 ring-gray-200/80">
                 <p class="text-xs font-semibold">Đọc bài</p>
