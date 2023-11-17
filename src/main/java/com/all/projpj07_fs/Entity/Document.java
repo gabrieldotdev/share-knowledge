@@ -3,6 +3,7 @@ package com.all.projpj07_fs.Entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "documents")
@@ -11,20 +12,23 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 200)
     private String Name;
 
     @Column(name = "description", nullable = false, length = 255)
     private String Description;
 
-    @Column(name = "file", nullable = false, length = 255)
-    private String File;
+    @Column(name = "fileName", nullable = false)
+    private String FileName;
 
-    @Column(name = "fileType", nullable = false, length = 50)
+    @Column(name = "fileType", nullable = false)
     private String FileType;
 
     @Column(name = "countDownload", nullable = false, columnDefinition = "INT DEFAULT 0")
     private Integer CountDownload;
+
+    @Column(name = "fileData", nullable = false, columnDefinition = "bytea")
+    private byte[] FileData;
 
     @Column(name = "publishedOn", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp PublishedOn;
@@ -76,12 +80,12 @@ public class Document {
         Description = description;
     }
 
-    public String getFile() {
-        return File;
+    public String getFileName() {
+        return FileName;
     }
 
-    public void setFile(String file) {
-        File = file;
+    public void setFileName(String fileName) {
+        FileName = fileName;
     }
 
     public String getFileType() {
@@ -98,6 +102,14 @@ public class Document {
 
     public void setCountDownload(Integer countDownload) {
         CountDownload = countDownload;
+    }
+
+    public byte[] getFileData() {
+        return FileData;
+    }
+
+    public void setFileData(byte[] fileData) {
+        FileData = fileData;
     }
 
     public Timestamp getPublishedOn() {
@@ -138,9 +150,10 @@ public class Document {
                 "Id=" + Id +
                 ", Name='" + Name + '\'' +
                 ", Description='" + Description + '\'' +
-                ", File='" + File + '\'' +
+                ", FileName='" + FileName + '\'' +
                 ", FileType='" + FileType + '\'' +
                 ", CountDownload=" + CountDownload +
+                ", FileData=" + Arrays.toString(FileData) +
                 ", PublishedOn=" + PublishedOn +
                 ", UpdatedOn=" + UpdatedOn +
                 ", UserId=" + UserId +

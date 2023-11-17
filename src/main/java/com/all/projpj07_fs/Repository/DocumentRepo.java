@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface DocumentRepo extends JpaRepository<Document, Integer> {
-    @Query("SELECT p FROM Document p WHERE p.Name LIKE %?1%" + " OR p.File LIKE %?1%")
+    @Query("SELECT p FROM Document p WHERE p.Name LIKE %?1%" + " OR p.FileName LIKE %?1%")
     List<Document> search(String keyword);
 }
