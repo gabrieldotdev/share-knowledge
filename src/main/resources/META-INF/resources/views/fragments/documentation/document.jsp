@@ -15,22 +15,25 @@
             <p class="text-md font-medium text-gray-700 line-clamp-5 px-2">${item.description}</p>
             <div class="flex items-center gap-2 border-t border-gray-200 pt-2">
                 <span class="text-sm font-semibold">Type:</span>
-<%--                <div class="flex cursor-pointer items-center bg-sky-500/40 py-1 px-2 rounded-2xl drop-shadow-xs">--%>
-<%--                    <p class="text-xs font-semibold truncate">${item.fileType}</p>--%>
-<%--                </div>--%>
+                    <%--                <div class="flex cursor-pointer items-center bg-sky-500/40 py-1 px-2 rounded-2xl drop-shadow-xs">--%>
+                    <%--                    <p class="text-xs font-semibold truncate">${item.fileType}</p>--%>
+                    <%--                </div>--%>
                 <span class="text-xs font-semibold bg-sky-500/40 rounded-2xl drop-shadow-xs py-1 px-2 truncate">${item.fileType}</span>
             </div>
             <!-- Edit/Delete -->
-            <div class="flex gap-x-2">
-                <a href="#"
-                   class="flex flex-shrink-0 items-center bg-red-500/40 hover:bg-red-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
-                    <p class="text-xs font-semibold">Chỉnh sửa</p>
-                </a>
-                <a href="/delete/${item.id}"
-                   class="flex flex-shrink-0 items-center bg-green-500/40 hover:bg-green-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
-                    <p class="text-xs font-semibold">Xoá</p>
-                </a>
-            </div>
+            <c:if test="${sessionScope.user.id == item.user.id}">
+                <div class="flex gap-x-2">
+                    <a href="#"
+                       class="flex flex-shrink-0 items-center bg-red-500/40 hover:bg-red-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
+                        <p class="text-xs font-semibold">Chỉnh sửa</p>
+                    </a>
+                    <form action="/delete/${item.id}" method="post"
+                          class="flex flex-shrink-0 items-center bg-green-500/40 hover:bg-green-500/70 py-1 px-2 rounded-2xl duration-300 transition-colors drop-shadow-xs">
+                        <input type="hidden" name="id" value="${item.id}">
+                        <button type="submit" class="text-xs font-semibold">Xóa</button>
+                    </form>
+                </div>
+            </c:if>
             <!-- File -->
             <div class="relative">
                 <a href="#" download="${item.fileData}"

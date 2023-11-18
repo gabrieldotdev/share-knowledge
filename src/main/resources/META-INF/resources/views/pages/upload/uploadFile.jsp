@@ -9,7 +9,6 @@
 <body>
 <div class="flex items-center min-h-screen p-4 bg-gray-100 justify-center bg-zinc-100">
     <div class="max-w-3xl w-full">
-        <%--        enctype="multipart/form-data"--%>
         <form action="/upload/save" method="post" enctype="multipart/form-data">
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12">

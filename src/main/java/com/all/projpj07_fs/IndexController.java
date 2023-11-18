@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -22,7 +24,6 @@ public class IndexController {
     @GetMapping("/")
     public String showHomePage(Model model, @Param("keyword") String keyword, HttpSession session) {
         User user = (User) session.getAttribute("user");
-
         List<Document> searchDocument = servs.search(keyword);
         model.addAttribute("user", user);
         model.addAttribute("searchDocument", searchDocument);
@@ -31,9 +32,10 @@ public class IndexController {
         return "pages/index";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteTest(@PathVariable("id") Integer id) {
+    @RequestMapping(value = {"/delete/{id}", "/xoa-tai-lieu/{id}"}, method = {RequestMethod.POST})
+    public String deleteTest(@PathVariable Integer id) {
         servs.delete(id);
         return "redirect:/";
     }
+
 }
