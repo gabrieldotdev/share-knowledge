@@ -37,14 +37,13 @@
                         <div id="searchResults"
                              class="absolute z-20 top-full left-0 mt-2 bg-white border rounded-xl shadow-lg p-4 hidden">
                             <div class="flex flex-col items-start justify-center gap-x-2">
-                                <span class="text-gray-400">Kết quả:<c:if
-                                        test="${not empty param.keyword}"> ${param.keyword}</c:if></span>
+                                <span class="text-gray-400">Kết quả:<c:if test="${not empty param.keyword}"> ${param.keyword}</c:if></span>
                                 <c:if test="${not empty param.keyword}">
                                     <c:forEach var="item" items="${searchDocument}">
                                         <a href="#"
                                            class="flex flex-col items-start justify-center gap-x-2 bg-zinc-100 mt-2 py-1 px-3 rounded-xl">
                                             <span class="text-gray-900 font-semibold">${item.name}</span>
-                                            <span class="text-gray-400 text-xs">${item.file}</span>
+                                            <span class="text-gray-400 text-xs">${item.fileName}</span>
                                         </a>
                                     </c:forEach>
                                     <c:if test="${empty searchDocument}">
