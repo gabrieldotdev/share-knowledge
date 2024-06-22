@@ -1,4 +1,4 @@
-# The Knowledge Bank | Website
+# Share Knowledge | Website
 
 ## About the project
 
